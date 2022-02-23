@@ -1,21 +1,38 @@
 import styled from 'styled-components'
-import { memo } from 'react'
+import { useState, memo } from 'react'
 
 import Button from '../UI/Button'
 import Card from '../UI/Card'
 
 const AddUser = ({ className }) => {
+  const [name, setName] = useState('')
+  const [age, setAge] = useState('')
+
+  const usernameChangeHandler = (event) => {
+    setName(event.target.value)
+  }
+
+  const ageChangeHandler = (event) => {
+    setAge(event.target.value)
+  }
+
   const addUserHandler = (event) => {
     event.preventDefault()
+    console.log(name, age)
   }
 
   return (
     <Card>
       <form className={className} onSubmit={addUserHandler}>
         <label htmlFor='username'>Username</label>
-        <input id='username' type='text' />
+        <input
+          id='username'
+          type='text'
+          value={name}
+          onChange={usernameChangeHandler}
+        />
         <label htmlFor='age'>Age (Years)</label>
-        <input id='age' type='number' />
+        <input id='age' type='number' value={age} onChange={ageChangeHandler} />
         <Button type='submit'>Add User</Button>
       </form>
     </Card>
