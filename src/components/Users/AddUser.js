@@ -47,7 +47,7 @@ const AddUser = ({ className, onAddUser }) => {
   }
 
   return (
-    <div>
+    <>
       {error && (
         <ErrorModal
           title={error.title}
@@ -74,7 +74,7 @@ const AddUser = ({ className, onAddUser }) => {
           <Button type='submit'>Add User</Button>
         </form>
       </Card>
-    </div>
+    </>
   )
 }
 

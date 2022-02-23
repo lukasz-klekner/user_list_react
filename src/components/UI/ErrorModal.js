@@ -1,24 +1,35 @@
 import { memo } from 'react'
 import styled from 'styled-components'
+import ReactDOM from 'react-dom'
 
 import Card from './Card'
 import Button from './Button'
 
+const Modal = ({ className, title, message, onConfirm }) => (
+  <div className={className}>
+    <Card>
+      <header>
+        <h2>{title}</h2>
+      </header>
+      <div>
+        <p>{message}</p>
+      </div>
+      <footer>
+        <Button onClick={onConfirm}>Okay</Button>
+      </footer>
+    </Card>
+  </div>
+)
+
 const ErrorModal = ({ className, title, message, onConfirm }) => {
-  return (
-    <div className={className} onClick={onConfirm}>
-      <Card>
-        <header>
-          <h2>{title}</h2>
-        </header>
-        <div>
-          <p>{message}</p>
-        </div>
-        <footer>
-          <Button onClick={onConfirm}>Okay</Button>
-        </footer>
-      </Card>
-    </div>
+  return ReactDOM.createPortal(
+    <Modal
+      className={className}
+      title={title}
+      message={message}
+      onConfirm={onConfirm}
+    />,
+    document.getElementById('modal')
   )
 }
 
