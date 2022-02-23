@@ -5,7 +5,7 @@ import Button from '../UI/Button'
 import Card from '../UI/Card'
 import ErrorModal from '../UI/ErrorModal'
 
-const AddUser = ({ className }) => {
+const AddUser = ({ className, onAddUser }) => {
   const [name, setName] = useState('')
   const [age, setAge] = useState('')
   const [error, setError] = useState('')
@@ -37,7 +37,7 @@ const AddUser = ({ className }) => {
       return
     }
 
-    console.log(name, age)
+    onAddUser(name, age)
     setName('')
     setAge('')
   }
